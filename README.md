@@ -5,6 +5,15 @@ Este projeto implementa uma arquitetura distribuída resiliente, desacoplada e c
 
 ---
 
+## 📦 Padrão Zero-Config (Sem necessidade de `.env`)
+
+O projeto foi configurado no padrão **Clone & Run**:
+* **Sem arquivos `.env`:** As credenciais de desenvolvimento local (`admin` / `senha123`) já estão pré-configuradas no `docker-compose.yml` e nos arquivos `application.properties` de cada serviço.
+* **Sem necessidade de instalar o Maven:** Cada microsserviço já acompanha seus próprios wrappers executáveis (`./mvnw` e `.\mvnw.cmd`).
+* **Bancos automáticos:** O script `init-db.sql` cria automaticamente as bases isoladas `db_pedidos` e `db_notificacao` na primeira inicialização do container.
+
+---
+
 ## 🏛️ Arquitetura e Mapeamento de Portas
 
 ```
@@ -61,38 +70,44 @@ Este projeto implementa uma arquitetura distribuída resiliente, desacoplada e c
 
 ## 🚀 Como Executar o Projeto
 
-### 1. Pré-requisitos
-* Java 21+ instalado
-* Docker e Docker Compose
+### 1. Clonar o Repositório
+```bash
+git clone https://github.com/Yuan-Dias/Sistema_Pedidos-Sistema_Distribuido.git
+cd Sistema_Pedidos-Sistema_Distribuido
+```
 
-### 2. Subir a Infraestrutura (PostgreSQL + RabbitMQ)
+### 2. Pré-requisitos
+* **Java 21+** instalado.
+* **Docker Desktop** (com Docker Compose ativo).
+
+### 3. Subir a Infraestrutura (PostgreSQL + RabbitMQ)
 No diretório raiz do projeto:
 ```bash
 docker compose up -d
 ```
 > O script `init-db.sql` criará automaticamente os bancos `db_pedidos` e `db_notificacao`. O banco principal `db_catalogo` é inicializado pelas variáveis de ambiente.
 
-### 3. Iniciar os Microsserviços
+### 4. Iniciar os Microsserviços
 Abra três terminais separados:
 
 ```bash
-# Terminal 1 - Catálogo
+# Terminal 1 - Catálogo (Porta 8082)
 cd ms-catalogo
 ./mvnw spring-boot:run
 ```
 
 ```bash
-# Terminal 2 - Pedidos
+# Terminal 2 - Pedidos (Porta 8083)
 cd ms-pedidos
 ./mvnw spring-boot:run
 ```
 
 ```bash
-# Terminal 3 - Notificação
+# Terminal 3 - Notificação (Porta 8084)
 cd ms-notificacao
 ./mvnw spring-boot:run
 ```
-*(No Windows, utilize `.\mvnw.cmd spring-boot:run`)*
+*(No Windows/PowerShell, utilize `.\mvnw.cmd spring-boot:run`)*
 
 ---
 
