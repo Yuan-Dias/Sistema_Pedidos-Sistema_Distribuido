@@ -3,12 +3,14 @@ package br.edu.ifba.ms_notificacao.controller;
 import br.edu.ifba.ms_notificacao.model.NotificacaoHistorico;
 import br.edu.ifba.ms_notificacao.service.NotificacaoService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/notificacoes")
 public class NotificacaoController {

@@ -22,3 +22,27 @@ Desktop.ini
 
 # Logs
 *.log
+
+# Dependências (Extremamente pesado, o Github recusa)
+frontend/node_modules/
+
+# Pasta de build/produção gerada pelo Vite
+frontend/dist/
+frontend/dist-ssr/
+
+# Arquivos de ambiente local (Nunca suba suas senhas/URLs locais)
+# Nota: O .env.example deve ir para o git, mas o .env não!
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+
+# Logs de erros do NPM
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+
+# Caches do Vite e TypeScript
+frontend/.eslintcache
+frontend/.vite/
+frontend/tsconfig.tsbuildinfo
